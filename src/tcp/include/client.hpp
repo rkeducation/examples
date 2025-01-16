@@ -26,7 +26,6 @@ class Client {
 
 	const char * host;
 	const int port;
-	bool is_secure;
 
 	int socket_fd = 0;
 	SSL * ssl = NULL;
@@ -34,7 +33,7 @@ class Client {
 	
 public:
 	// Constructor
-	Client ( const char * h, const int p, bool s = true ) : host(h), port(p), is_secure(s) {}
+	Client ( const char * h, const int p ) : host(h), port(p) {}
 
 	// Desctructor
 	~Client () {

@@ -8,7 +8,6 @@
 #ifndef tensor_hpp
 #define tensor_hpp
 
-#include <iostream>
 #include <vector>
 #include <functional>
 #include <cstring>

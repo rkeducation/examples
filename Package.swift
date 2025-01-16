@@ -30,7 +30,6 @@ let package = Package(
             name: "tensorlib",
             dependencies: [],
             path: "src/tensors",
-            exclude: ["main.cpp"],
             publicHeadersPath: "include",
             cxxSettings: [
                 .headerSearchPath("include"),
@@ -42,28 +41,32 @@ let package = Package(
             name: "tcplib",
             dependencies: [],
             path: "src/tcp",
-            exclude: ["main.cpp"],
             publicHeadersPath: "include",
             cxxSettings: [
                 .headerSearchPath("include"),
                 .define("USE_CPP_LIB"),
                 .unsafeFlags([
+                    "-stdlib=libc++",
                     "-I/opt/homebrew/Cellar/openssl@3/3.4.0/include"
                 ], .when(platforms: [.macOS]))
             ],
             linkerSettings: [
                 .linkedLibrary("ssl"),
                 .linkedLibrary("crypto"),
-                .unsafeFlags(["-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib"], .when(platforms: [.macOS])),
-                .unsafeFlags(["-I/opt/homebrew/Cellar/openssl@3/3.4.0/include"], .when(platforms: [.macOS]))
+                .unsafeFlags([
+                    "-lc++", // Explicitly link the C++ standard library
+                    "-lpthread", // Link pthread for threading support
+                    "-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib",
+                    "-I/opt/homebrew/Cellar/openssl@3/3.4.0/include"
+                ], .when(platforms: [.macOS])),
             ]
         ),
         // Unit test target (optional)
         .testTarget(
             name: "RunTests",
             dependencies: ["Run"],
-            path: "tests/RunTests"
+            path: "tests"
         )
     ],
-    cxxLanguageStandard: .cxx20
+    cxxLanguageStandard: .cxx17
 )
