@@ -66,7 +66,7 @@ let package = Package(
         .testTarget(
             name: "RunTests",
             dependencies: ["Run"],
-            path: "tests"
+            path: "SwiftTests"
         )
     ],
     cxxLanguageStandard: .cxx17
