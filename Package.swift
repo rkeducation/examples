@@ -22,14 +22,15 @@ let package = Package(
         // The Swift executable target
         .executableTarget(
             name: "Run",
-            dependencies: ["tensorlib", "tcplib"],
-            path: "Sources/Run"
+            dependencies: ["NET", "TCP"],
+            path: "Sources/Run",
+			swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
         // The C++ library target for tensors
         .target(
-            name: "tensorlib",
+            name: "NET",
             dependencies: [],
-            path: "src/tensors",
+            path: "src/net",
             publicHeadersPath: "include",
             cxxSettings: [
                 .headerSearchPath("include"),
@@ -38,7 +39,7 @@ let package = Package(
         ),
         // The C++ library target for tcp
         .target(
-            name: "tcplib",
+            name: "TCP",
             dependencies: [],
             path: "src/tcp",
             publicHeadersPath: "include",
