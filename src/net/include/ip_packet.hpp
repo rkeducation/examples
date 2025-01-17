@@ -13,15 +13,16 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-class packet {
+class IPPacket {
 	/*  Store payload data, header is not included */
 	char * payload;
 	
 	/*  Header bytes data  */
 	char * header;
-		
+	
 public:
-	packet (char * buffer);
+	/*  Constructor  */
+	explicit IPPacket (const char * buffer);
 	
 };
 

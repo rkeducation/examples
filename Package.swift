@@ -15,20 +15,29 @@ let package = Package(
             targets: ["Run"]
         )
     ],
-    dependencies: [
-        // Add any external dependencies here
-    ],
+	dependencies: [
+		.package(url: "https://github.com/hummingbird-project/hummingbird", from: "2.6.0"),
+		.package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0"),
+	],
     targets: [
         // The Swift executable target
         .executableTarget(
             name: "Run",
-            dependencies: ["NET", "TCP"],
+			dependencies: ["LibNet", "LibTCP"],
             path: "Sources/Run",
 			swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
+		.systemLibrary(
+			name: "LibCurl",
+			path: "src/curl",
+			providers: [
+				.apt(["libcurl4-openssl-dev"]),
+				.brew(["curl"])
+			]
+		),
         // The C++ library target for tensors
         .target(
-            name: "NET",
+            name: "LibNet",
             dependencies: [],
             path: "src/net",
             publicHeadersPath: "include",
@@ -39,7 +48,7 @@ let package = Package(
         ),
         // The C++ library target for tcp
         .target(
-            name: "TCP",
+            name: "LibTCP",
             dependencies: [],
             path: "src/tcp",
             publicHeadersPath: "include",

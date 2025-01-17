@@ -10,7 +10,7 @@
 #include "include/ip_packet.hpp"
 
 
-packet::packet(char * buffer) {
+void initialize( const char * buffer ) {
 	
 	const struct ip * ip_header = reinterpret_cast<const struct ip*>(buffer);
 	
@@ -34,4 +34,8 @@ packet::packet(char * buffer) {
 
 	std::cout << "Source IP: " << srcIP << std::endl;
 	std::cout << "Destination IP: " << destIP << std::endl;
+}
+
+IPPacket :: IPPacket(const char * buffer) {
+	initialize(buffer);
 }
