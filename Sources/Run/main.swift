@@ -6,13 +6,20 @@
 //
 
 import LibNet
+import api
 
 debugPrint("Starting the worker ... ")
 
-example1()
 
-//let bytes : [UInt8] = [0xFF, 0xAB, 0x0F, 0x23, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
-//let packet = IPPacket(bytes)
-//print("Bytes = \(bytes.map { String($0) }.joined(separator: " "))")
+
+let bytes : [UInt8] = [0xFF, 0xAB, 0x0F, 0x23, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+let packet = IPPacket(bytes)
+print("Bytes = \(bytes.map { String($0) }.joined(separator: " "))")
+
+
+
+
+
+
 
 debugPrint("Stopping the worker ... ")

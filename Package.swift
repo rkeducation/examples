@@ -5,8 +5,8 @@ import PackageDescription
 let package = Package(
     name: "Examples",
     platforms: [
-        .macOS(.v10_15),
-        .iOS(.v13)
+        .macOS(.v14),
+        .iOS(.v16)
     ],
     products: [
         // Define the Swift executable
@@ -20,10 +20,18 @@ let package = Package(
 		.package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0"),
 	],
     targets: [
+		.target(
+			name: "api",
+			dependencies: [
+				.product(name: "Hummingbird", package: "hummingbird"),
+				.product(name: "HummingbirdHTTP2", package: "hummingbird"),
+				.product(name: "ArgumentParser", package: "swift-argument-parser"),
+			]
+		),
         // The Swift executable target
         .executableTarget(
             name: "Run",
-			dependencies: ["LibNet", "LibTCP"],
+			dependencies: ["LibNet", "LibTCP", "api"],
             path: "Sources/Run",
 			swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
@@ -72,7 +80,7 @@ let package = Package(
         // Unit test target (optional)
         .testTarget(
             name: "RunTests",
-            dependencies: ["Run"],
+            dependencies: ["api", "LibNet"],
             path: "SwiftTests",
 			swiftSettings: [.interoperabilityMode(.Cxx)]
         )
