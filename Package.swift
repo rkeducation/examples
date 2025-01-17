@@ -47,35 +47,34 @@ let package = Package(
             ]
         ),
         // The C++ library target for tcp
-        .target(
-            name: "LibTCP",
-            dependencies: [],
-            path: "src/tcp",
-            publicHeadersPath: "include",
-            cxxSettings: [
-                .headerSearchPath("include"),
-                .define("USE_CPP_LIB"),
-                .unsafeFlags([
-                    "-stdlib=libc++",
-                    "-I/opt/homebrew/Cellar/openssl@3/3.4.0/include"
-                ], .when(platforms: [.macOS]))
-            ],
-            linkerSettings: [
-                .linkedLibrary("ssl"),
-                .linkedLibrary("crypto"),
-                .unsafeFlags([
-                    "-lc++", // Explicitly link the C++ standard library
-                    "-lpthread", // Link pthread for threading support
-                    "-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib",
-                    "-I/opt/homebrew/Cellar/openssl@3/3.4.0/include"
-                ], .when(platforms: [.macOS])),
-            ]
-        ),
+		.target(
+			name: "LibTCP",
+			dependencies: [],
+			path: "src/tcp",
+			publicHeadersPath: "include",
+			cxxSettings: [
+				.headerSearchPath("include"), // Relative path for your project's headers
+				.define("USE_CPP_LIB"),
+				.unsafeFlags([
+					"-I/opt/homebrew/Cellar/openssl@3/3.4.0/include" // Absolute path for OpenSSL headers
+				])
+			],
+			linkerSettings: [
+				.linkedLibrary("ssl"),
+				.linkedLibrary("crypto"),
+				.linkedLibrary("c++"), // Explicitly link C++ standard library
+				.linkedLibrary("pthread"), // Threading support
+				.unsafeFlags([
+					"-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib" // Absolute path for OpenSSL libraries
+				])
+			]
+		),
         // Unit test target (optional)
         .testTarget(
             name: "RunTests",
             dependencies: ["Run"],
-            path: "SwiftTests"
+            path: "SwiftTests",
+			swiftSettings: [.interoperabilityMode(.Cxx)]
         )
     ],
     cxxLanguageStandard: .cxx17

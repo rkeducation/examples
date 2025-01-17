@@ -8,6 +8,7 @@
 #ifndef TCP_HPP
 #define TCP_HPP
 
+void example1();
 
 
 #endif /* tensor_hpp */

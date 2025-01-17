@@ -6,6 +6,7 @@
 //
 
 import Testing
+import LibNet
 
 @Suite("")
 struct TestCases1 {
@@ -13,7 +14,7 @@ struct TestCases1 {
 	
 	@Test
 	func testEx1() throws {
-		
+		example1()
 	}
 	
 }
