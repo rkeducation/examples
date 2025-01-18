@@ -14,17 +14,30 @@
 #include <unistd.h>
 
 class IPPacket {
+	
+	/* Header information */
+	struct ip * ip_header;
+	
 	/*  Store payload data, header is not included */
 	char * payload;
-	
-	/*  Header bytes data  */
-	char * header;
-	
+
 public:
 	/*  Constructor  */
 	explicit IPPacket (const char * buffer);
 	
+
+	u_short payload_len() {
+		return ip_header->ip_len - ip_header->ip_hl;
+	}
+	
+	~IPPacket () {
+		delete ip_header;
+		delete payload;
+	}
 };
+
+
+int start_packet_server();
 
 
 #endif /* PACKET_HPP */
