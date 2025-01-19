@@ -18,6 +18,7 @@ void print_header_detail( const struct ip * ip_header ) {
 	std::cout << "Version: " << static_cast<int>(ip_header->ip_v) << std::endl;
 	std::cout << "Header Length: " << static_cast<int>(ip_header->ip_hl * 4) << " bytes" << std::endl;
 	std::cout << "Type of Service: " << static_cast<int>(ip_header->ip_tos) << std::endl;
+
 	std::cout << "Total Length: " << ntohs(ip_header->ip_len) << " bytes" << std::endl;
 	std::cout << "Identification: " << ntohs(ip_header->ip_id) << std::endl;
 	std::cout << "Fragment offset: " << ntohs(ip_header->ip_off) << std::endl;
@@ -45,13 +46,14 @@ IPPacket :: IPPacket(const char * buffer) {
 	
 	u_short p_len = payload_len();
 	payload = (char*) malloc(payload_len());
-	memcpy(payload, buffer+_header->ip_hl, payload_len());
+	memcpy(payload, buffer+_header->ip_hl, p_len);
 	
 	// printing payload
-	printf("\nPayload : \n");
+	printf("\n ---------   Payload ---------- \n");
 	for (int i = 0; i < p_len; i+=2) {
 		printf("0x%hX, ", payload[i]);
 	}
+	printf("\n ------------------------------- \n");
 }
 
 

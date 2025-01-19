@@ -31,7 +31,7 @@ let package = Package(
         // The Swift executable target
         .executableTarget(
             name: "Run",
-			dependencies: ["LibNet", "LibTCP", "api"],
+			dependencies: ["LibNet", "api"],
             path: "Sources/Run",
 			swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
@@ -54,29 +54,6 @@ let package = Package(
                 .define("USE_CPP_LIB")
             ]
         ),
-        // The C++ library target for tcp
-		.target(
-			name: "LibTCP",
-			dependencies: [],
-			path: "src/tcp",
-			publicHeadersPath: "include",
-			cxxSettings: [
-				.headerSearchPath("include"), // Relative path for your project's headers
-				.define("USE_CPP_LIB"),
-				.unsafeFlags([
-					"-I/opt/homebrew/Cellar/openssl@3/3.4.0/include" // Absolute path for OpenSSL headers
-				])
-			],
-			linkerSettings: [
-				.linkedLibrary("ssl"),
-				.linkedLibrary("crypto"),
-				.linkedLibrary("c++"), // Explicitly link C++ standard library
-				.linkedLibrary("pthread"), // Threading support
-				.unsafeFlags([
-					"-L/opt/homebrew/Cellar/openssl@3/3.4.0/lib" // Absolute path for OpenSSL libraries
-				])
-			]
-		),
         // Unit test target (optional)
         .testTarget(
             name: "RunTests",

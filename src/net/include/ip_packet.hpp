@@ -39,5 +39,7 @@ public:
 
 int start_packet_server();
 
+int test();
+
 
 #endif /* PACKET_HPP */
