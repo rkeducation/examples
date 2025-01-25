@@ -35,14 +35,6 @@ let package = Package(
             path: "Sources/Run",
 			swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
-		.systemLibrary(
-			name: "LibCurl",
-			path: "src/curl",
-			providers: [
-				.apt(["libcurl4-openssl-dev"]),
-				.brew(["curl"])
-			]
-		),
         // The C++ library target for tensors
         .target(
             name: "LibNet",
