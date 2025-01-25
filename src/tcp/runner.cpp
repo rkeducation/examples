@@ -5,6 +5,14 @@
 //  Created by Ramesh Kumar on 07/01/25.
 //
 
+
+#include <arpa/inet.h>
+#include <netinet/ip.h>
+#include <sys/socket.h>
+#include <unistd.h>
+
+#include <iostream>
+#include <cstring>
 #include <algorithm>
 #include <set>
 #include <string>
