@@ -12,7 +12,7 @@
 
 int main() {
 
-    int status = run_server_for_raw_data();
+    int status = run_server();
     
     return status;
 }

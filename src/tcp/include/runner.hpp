@@ -25,8 +25,4 @@ int run_server () ;
 void run_task_loop() ;
 
 
-// =========  RUN RAW SERVER  ============
-
-int run_server_for_raw_data();
-
 #endif
