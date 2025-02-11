@@ -1,6 +1,5 @@
 build
 .build
-.vscode
 .DS_Store
 .swiftpm
-**/.DS_Store
+*/.DS_Store
