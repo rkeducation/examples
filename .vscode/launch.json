@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Executable",
+            "name": "Debug Main",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/macos/debug/bin/sockets",

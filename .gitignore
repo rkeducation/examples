@@ -3,3 +3,4 @@ build
 .DS_Store
 .swiftpm
 */.DS_Store
+*/build
