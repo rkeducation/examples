@@ -12,7 +12,7 @@
 
 int main() {
 
-    int status = run_server();
-    
-    return status;
+  // Run task loop infinitely
+  run_task_loop();
+  return 0;
 }
