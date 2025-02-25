@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 
 #include "include/ip_packet.hpp"
 
