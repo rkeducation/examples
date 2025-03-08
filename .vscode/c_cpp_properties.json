@@ -3,10 +3,15 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
+                "${workspaceFolder}/blink/**",
+                "${workspaceFolder}/blink/src/**",
                 "/usr/arm-none-eabi/include"
             ],
-            "defines": [],
+            "defines": [
+                "__ARM_ARCH_8M_MAIN__=1",
+                "__ARM_FEATURE_CMSE=3",
+                "__ARM_V8M_MAINLINE"
+            ],
             "compilerPath": "/usr/bin/arm-none-eabi-gcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
