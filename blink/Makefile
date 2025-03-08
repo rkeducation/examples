@@ -1,47 +1,49 @@
-# Toolchain settings
+# Toolchain definitions
 CC = arm-none-eabi-gcc
-AS = arm-none-eabi-as
-LD = arm-none-eabi-ld
+LD = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 
-# Compiler and assembler flags
-CFLAGS = -mthumb -mcpu=cortex-m33 -O2 -Wall
-ASFLAGS = -mcpu=cortex-m33 -mthumb
-LDFLAGS = -nostdlib -T linker.ld
+# Directory definitions
+SRC_DIR = src
+BUILD_DIR = build
 
+# Compiler and linker flags
+CFLAGS = -mcpu=cortex-m33 -mthumb -I $(SRC_DIR)
+LDFLAGS = -nostdlib -T $(SRC_DIR)/linker.ld
 
-# Source files
-SOURCES = main.c startup.s
-OBJECTS = main.o startup.o
-TARGET = blink.elf
-BINARY = blink.bin
-UF2 = blink.uf2
+# List of object files
+OBJECTS = $(BUILD_DIR)/main.o $(BUILD_DIR)/startup.o $(BUILD_DIR)/led.o $(BUILD_DIR)/adc.o $(BUILD_DIR)/uart.o $(BUILD_DIR)/delay.o
 
 # Default target
-all: $(BINARY)
+all: $(BUILD_DIR)/program.bin
 
-# Compile C files
-main.o: main.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Assemble startup file
-startup.o: startup.s
-	$(AS) $(ASFLAGS) -o $@ $<
-
-# Link objects
-$(TARGET): $(OBJECTS)
-	$(LD) $(LDFLAGS) -o $@ $(OBJECTS)
-
-# Generate binary
-$(BINARY): $(TARGET)
+# Generate binary from ELF
+$(BUILD_DIR)/program.bin: $(BUILD_DIR)/program.elf
 	$(OBJCOPY) -O binary $< $@
 
-# Clean up
+# Link object files into ELF
+$(BUILD_DIR)/program.elf: $(OBJECTS)
+	$(LD) $(LDFLAGS) $^ -o $@
+
+# Compile root-level C files (main.c)
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Compile C files from src/
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Compile assembly files from src/
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.s | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Create build directory if it doesn't exist
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Clean up build artifacts
 clean:
-	rm -f *.o *.elf *.bin *.uf2
+	rm -rf $(BUILD_DIR)
 
-# Flash to device (optional)
-flash: $(UF2)
-	@echo "Copy $(UF2) to the RP2350 in BOOTSEL mode"
-
-.PHONY: all clean flash
+# Declare phony targets
+.PHONY: all clean
