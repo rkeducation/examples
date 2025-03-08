@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "led.h"
 #include "adc.h"
 #include "uart.h"
