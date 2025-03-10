@@ -1,7 +1,7 @@
 #include "led.h"
 
 // Placeholder register addresses (adjust per RP2350 datasheet)
-#define GPIO_BASE       0x40014000
+#define GPIO_BASE       0xD0000000
 #define GPIO25_CTRL     (GPIO_BASE + 0x0C4)  // Control register for GPIO25
 #define GPIO_OUT_XOR    (GPIO_BASE + 0x00C)  // XOR register to toggle
 #define GPIO_OUT_CLR    (GPIO_BASE + 0x008)  // Clear register to set low

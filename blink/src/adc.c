@@ -1,7 +1,7 @@
 #include "adc.h"
 
 // Placeholder register addresses (adjust per RP2350 datasheet)
-#define ADC_BASE    0x4004C000
+#define ADC_BASE    0x400A0000
 #define ADC_CS      (ADC_BASE + 0x00)  // Control and status
 #define ADC_RESULT  (ADC_BASE + 0x04)  // Conversion result
 

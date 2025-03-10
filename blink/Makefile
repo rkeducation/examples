@@ -8,7 +8,8 @@ SRC_DIR = src
 BUILD_DIR = build
 
 # Compiler and linker flags
-CFLAGS = -mcpu=cortex-m33 -mthumb -I $(SRC_DIR)
+# CFLAGS = -mcpu=cortex-m33 -mthumb -I $(SRC_DIR)
+CFLAGS = -mcpu=cortex-m33 -mthumb -I $(SRC_DIR) -g -Og
 LDFLAGS = -nostdlib -T $(SRC_DIR)/linker.ld
 
 # List of object files

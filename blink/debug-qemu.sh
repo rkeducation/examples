@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables
-BINARY="blink/build/program.bin"
-ELF="blink/build/program.elf"
+BINARY="build/program.bin"
+ELF="build/program.elf"
 QEMU="qemu-system-arm"
 MACHINE="virt"  # Generic ARMv7-M machine with Cortex-M33 support
 CPU="cortex-m33"

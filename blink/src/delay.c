@@ -2,7 +2,7 @@
 #include "config.h"
 
 // SysTick registers (Cortex-M33 standard)
-#define SYSTICK_BASE    0xE000E010
+#define SYSTICK_BASE    0x40108000
 #define SYSTICK_CTRL    (SYSTICK_BASE + 0x00)
 #define SYSTICK_LOAD    (SYSTICK_BASE + 0x04)
 #define SYSTICK_VAL     (SYSTICK_BASE + 0x08)

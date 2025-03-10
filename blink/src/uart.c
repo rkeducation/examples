@@ -2,7 +2,7 @@
 #include "config.h"
 
 // Placeholder register addresses (adjust per RP2350 datasheet)
-#define UART0_BASE  0x40034000
+#define UART0_BASE  0x40070000
 #define UART0_DR    (UART0_BASE + 0x00)  // Data register
 #define UART0_FR    (UART0_BASE + 0x18)  // Flag register
 #define UART0_IBRD  (UART0_BASE + 0x24)  // Integer baud rate divisor

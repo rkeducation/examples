@@ -66,5 +66,4 @@ HardFault_Handler:
 SysTick_Handler:
     bl systick_handler      // Call C handler for SysTick
     bx lr                   // Return from interrupt
-
-// Ensure proper comment termination
+;// Ensure proper comment termination
