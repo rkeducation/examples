@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Cortex-M33",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "qemu",
+            "executable": "./main.elf",
+            "cpu": "cortex-m33",
+            "machine": "virt",
+            "gdbTarget": "localhost:1234"
+        }
+    ]
+}
