@@ -53,7 +53,7 @@ WARNINGS = -Wall -Wpedantic -Wextra
 
 
 # Linker flags
-LDFLAGS = -L/opt/homebrew/Cellar/openssl@3/3.4.0/lib
+LDFLAGS = -lssl -lcrypto
 TEST_LDFLAGS =
 
 # Libraries to link

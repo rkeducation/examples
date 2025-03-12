@@ -5,6 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/blink/**",
                 "${workspaceFolder}/blink/src/**",
+                "${workspaceFolder}/server/**",
+                "${workspaceFolder}/server/src/**",
                 "/usr/arm-none-eabi/include"
             ],
             "defines": [
