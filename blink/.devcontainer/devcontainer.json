@@ -1,0 +1,22 @@
+{
+    "name": "ARM-Dev-Env",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+        "marus25.cortex-debug",
+        "ms-vscode.cpptools",
+        "ms-vscode.makefile-tools"
+    ],
+    "runArgs": [
+        "--platform", "linux/arm64"  // Ensures compatibility with M1
+    ],
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "workspaceFolder": "/workspace"
+}
