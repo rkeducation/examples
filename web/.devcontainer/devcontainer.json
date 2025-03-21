@@ -1,0 +1,19 @@
+{
+  "name": "React-App",
+  "build": {
+    "dockerfile": "Dockerfile.dev",
+    "context": ".."
+  },
+  "appPort": ["3000:3000"],
+  "workspaceFolder": "/app",
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/sh"
+  },
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
+}

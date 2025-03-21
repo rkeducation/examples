@@ -1,0 +1,23 @@
+FROM node:18-alpine
+
+# Install git
+RUN apk add --no-cache git
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and fix permissions
+COPY package.json .
+RUN chown -R node:node /app
+
+# Install dependencies as node user
+USER node
+RUN npm install
+
+# Copy the rest of the app
+COPY --chown=node:node . .
+
+# Expose port
+EXPOSE 3000
+
+CMD ["npm", "start"]
