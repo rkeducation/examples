@@ -5,10 +5,10 @@
 #include "delay.h"
 
 // Convert temperature (tenths of °C) to string, e.g., "25.3"
-void int_to_str(int value, char* buffer) {
+void int_to_str(uint32_t value, char* buffer, uint8_t size) {
     int integer_part = value / 10;
     int fractional_part = value % 10;
-    int i = 0;
+    uint8_t i = 0;
 
     if (integer_part == 0) {
         buffer[i++] = '0';
